@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Rutina Gym</title>
+
+    <!-- Ícono y comportamiento tipo app al agregar a pantalla de inicio -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIgMTkyIj4KPHJlY3Qgd2lkdGg9IjE5MiIgaGVpZ2h0PSIxOTIiIHJ4PSIzNiIgZmlsbD0iIzFhMjUyZiIvPgo8cmVjdCB4PSIzMCIgeT0iNjYiIHdpZHRoPSIxOCIgaGVpZ2h0PSI2MCIgcng9IjQiIGZpbGw9IiNmZmZmZmYiLz4KPHJlY3QgeD0iNTAiIHk9Ijc2IiB3aWR0aD0iMTAiIGhlaWdodD0iNDAiIHJ4PSIzIiBmaWxsPSIjZmZmZmZmIi8+CjxyZWN0IHg9IjYwIiB5PSI5MCIgd2lkdGg9IjcyIiBoZWlnaHQ9IjEyIiByeD0iNiIgZmlsbD0iI2ZmZmZmZiIvPgo8cmVjdCB4PSIxMzIiIHk9Ijc2IiB3aWR0aD0iMTAiIGhlaWdodD0iNDAiIHJ4PSIzIiBmaWxsPSIjZmZmZmZmIi8+CjxyZWN0IHg9IjE0NCIgeT0iNjYiIHdpZHRoPSIxOCIgaGVpZ2h0PSI2MCIgcng9IjQiIGZpbGw9IiNmZmZmZmYiLz4KPC9zdmc+Cg==">
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIgMTkyIj4KPHJlY3Qgd2lkdGg9IjE5MiIgaGVpZ2h0PSIxOTIiIHJ4PSIzNiIgZmlsbD0iIzFhMjUyZiIvPgo8cmVjdCB4PSIzMCIgeT0iNjYiIHdpZHRoPSIxOCIgaGVpZ2h0PSI2MCIgcng9IjQiIGZpbGw9IiNmZmZmZmYiLz4KPHJlY3QgeD0iNTAiIHk9Ijc2IiB3aWR0aD0iMTAiIGhlaWdodD0iNDAiIHJ4PSIzIiBmaWxsPSIjZmZmZmZmIi8+CjxyZWN0IHg9IjYwIiB5PSI5MCIgd2lkdGg9IjcyIiBoZWlnaHQ9IjEyIiByeD0iNiIgZmlsbD0iI2ZmZmZmZiIvPgo8cmVjdCB4PSIxMzIiIHk9Ijc2IiB3aWR0aD0iMTAiIGhlaWdodD0iNDAiIHJ4PSIzIiBmaWxsPSIjZmZmZmZmIi8+CjxyZWN0IHg9IjE0NCIgeT0iNjYiIHdpZHRoPSIxOCIgaGVpZ2h0PSI2MCIgcng9IjQiIGZpbGw9IiNmZmZmZmYiLz4KPC9zdmc+Cg==">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Rutina Gym">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#1a252f">
+
+    <style>
+        :root {
+            --primary: #1a252f;
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-main: #2b2b2b;
+            --text-muted: #6c757d;
+            --border: #dee2e6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-color);
+            padding: 20px;
+            padding-bottom: 100px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 30px 20px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        .card h2 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+        }
+
+        .card h2::before {
+            content: '';
+            display: inline-block;
+            width: 5px;
+            height: 24px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 15px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background-color: var(--bg-color);
+            color: var(--secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        .pattern-tag {
+            display: inline-block;
+            background: #ffebee;
+            color: var(--accent);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .exercise-name {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 4px;
+            font-size: 1.05rem;
+        }
+
+        .exercise-alt {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .rest-btn {
+            background: var(--bg-color);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 9px 14px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--secondary);
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .rest-btn:active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .guide-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .guide-item {
+            background: var(--bg-color);
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .guide-item h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .guide-steps {
+            list-style-type: none;
+        }
+
+        .guide-steps li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .guide-steps li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .muscle-focus {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            background: #e9ecef;
+            padding: 3px 8px;
+            border-radius: 12px;
+            color: #495057;
+            font-weight: 600;
+        }
+
+        .timer-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--secondary);
+            color: white;
+            padding: 12px 20px;
+            padding-bottom: calc(12px + env(safe-area-inset-bottom));
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 -3px 10px rgba(0,0,0,0.2);
+            z-index: 999;
+            transition: background 0.3s ease;
+        }
+
+        .timer-bar.active { background: var(--primary); }
+
+        .timer-bar.done { animation: pulseDone 0.8s infinite; }
+
+        @keyframes pulseDone {
+            0%, 100% { background: #2e7d32; }
+            50% { background: #43a047; }
+        }
+
+        .timer-info {
+            display: flex;
+            align-items: baseline;
+            gap: 14px;
+        }
+
+        .timer-display {
+            font-size: 1.9rem;
+            font-weight: 700;
+            font-variant-numeric: tabular-nums;
+            min-width: 64px;
+        }
+
+        .timer-label {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .timer-cancel {
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .timer-cancel:active { background: rgba(255,255,255,0.3); }
+
+        @media (max-width: 600px) {
+            table, thead, tbody, th, td, tr { display: block; }
+            thead tr { position: absolute; top: -9999px; left: -9999px; }
+            tr { margin-bottom: 15px; border: 1px solid var(--border); border-radius: 8px; padding: 10px; }
+            td { border: none; position: relative; padding-left: 110px; margin-bottom: 8px; }
+            td::before { position: absolute; top: 15px; left: 12px; width: 90px; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); }
+            td:nth-of-type(1)::before { content: "Ejercicio"; }
+            td:nth-of-type(2)::before { content: "Series"; }
+            td:nth-of-type(3)::before { content: "Reps"; }
+            td:nth-of-type(4)::before { content: "Descanso"; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Protocolo de Recomposición Corporal</h1>
+        <p>Full Body A/B • 40 minutos</p>
+    </header>
+
+    <div class="card">
+        <h2>Rutina A</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Ejercicio</th>
+                    <th>Series</th>
+                    <th>Repeticiones</th>
+                    <th>Descanso</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span class="pattern-tag">Piernas: Cuádriceps</span>
+                        <div class="exercise-name">Prensa de piernas a 45°</div>
+                        <div class="exercise-alt">Alt: Sentadilla Libre</div>
+                    </td>
+                    <td>3</td>
+                    <td>8 - 12</td>
+                    <td><button type="button" class="rest-btn" data-seconds="90">▶ 90 seg</button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="pattern-tag">Torso: Tirón</span>
+                        <div class="exercise-name">Remo con Barra o Mancuerna</div>
+                        <div class="exercise-alt">Espalda inclinada, tirando a la cadera</div>
+                    </td>
+                    <td>3</td>
+                    <td>8 - 12</td>
+                    <td><button type="button" class="rest-btn" data-seconds="90">▶ 90 seg</button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="pattern-tag">Torso: Empuje Plano</span>
+                        <div class="exercise-name">Press de Banca Plano</div>
+                        <div class="exercise-alt">Con barra o mancuernas</div>
+                    </td>
+                    <td>3</td>
+                    <td>8 - 12</td>
+                    <td><button type="button" class="rest-btn" data-seconds="90">▶ 90 seg</button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="pattern-tag">Pantorrillas</span>
+                        <div class="exercise-name">Elevación de Talones (Gemelos)</div>
+                        <div class="exercise-alt">En máquina específica o Prensa 45°</div>
+                    </td>
+                    <td>3</td>
+                    <td>12 - 20</td>
+                    <td><button type="button" class="rest-btn" data-seconds="60">▶ 60 seg</button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="pattern-tag">Brazos</span>
+                        <div class="exercise-name">Curl de Bíceps (Supinado)</div>
+                        <div class="exercise-alt">Palmas hacia arriba</div>
+                    </td>
+                    <td>3</td>
+                    <td>10 - 15</td>
+                    <td><button type="button" class="rest-btn" data-seconds="60">▶ 60 seg</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>Rutina B</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Ejercicio</th>
+                    <th>Series</th>
+                    <th>Repeticiones</th>
+                    <th>Descanso</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span class="pattern-tag">Piernas: Femoral</span>
+                        <div class="exercise-name">Curl de Isquiotibiales (Sentado)</div>
+                        <div class="exercise-alt">Alt: Curl de Isquiotibiales (Acostado)</div>
+                    </td>
+                    <td>3</td>
+                    <td>10 - 15</td>
+                    <td><button type="button" class="rest-btn" data-seconds="60">▶ 60 seg</button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="pattern-tag">Torso: Tirón</span>
+                        <div class="exercise-name">Jalón al pecho en polea alta</div>
+                        <div class="exercise-alt">Agarre un poco más ancho que los hombros</div>
+                    </td>
+                    <td>3</td>
+                    <td>8 - 12</td>
+                    <td><button type="button" class="rest-btn" data-seconds="90">▶ 90 seg</button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="pattern-tag">Torso: Empuje Inclinado</span>
+                        <div class="exercise-name">Press Inclinado (Barra o Mancuernas)</div>
+                        <div class="exercise-alt">Foco en el pecho superior (clavicular)</div>
+                    </td>
+                    <td>3</td>
+                    <td>8 - 12</td>
+                    <td><button type="button" class="rest-btn" data-seconds="90">▶ 90 seg</button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="pattern-tag">Torso: Empuje Vertical</span>
+                        <div class="exercise-name">Press Militar (Hombros)</div>
+                        <div class="exercise-alt">Sentado con mancuernas o de pie con barra</div>
+                    </td>
+                    <td>3</td>
+                    <td>8 - 12</td>
+                    <td><button type="button" class="rest-btn" data-seconds="90">▶ 90 seg</button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="pattern-tag">Brazos</span>
+                        <div class="exercise-name">Extensión de Tríceps en polea</div>
+                        <div class="exercise-alt">Empuje hacia abajo aislando el tríceps</div>
+                    </td>
+                    <td>3</td>
+                    <td>10 - 15</td>
+                    <td><button type="button" class="rest-btn" data-seconds="60">▶ 60 seg</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>Guía Biomecánica de Ejecución</h2>
+        
+        <div class="guide-grid">
+            <div class="guide-item">
+                <h3>1. Patrón de Empuje (Pechos y Hombros)</h3>
+                <ul class="guide-steps">
+                    <li><strong>Press Plano e Inclinado:</strong> Junta los omóplatos (retracción escapular) antes de sacar el peso. En el plano, la barra baja al esternón. En el inclinado (banco a 30°-45°), baja hacia la clavícula. Codos siempre a 45° del cuerpo.</li>
+                    <li><strong>Press Militar:</strong> Empuja la barra o mancuernas desde la clavícula hacia el techo. Bloquea arriba metiendo levemente la cabeza hacia adelante.</li>
+                </ul>
+                <div class="muscle-focus">Impacto: Pectoral mayor, deltoides anterior, tríceps.</div>
+            </div>
+
+            <div class="guide-item">
+                <h3>2. Patrón de Tirón (Espalda)</h3>
+                <ul class="guide-steps">
+                    <li><strong>Remo:</strong> Torso a 45° o paralelo al suelo. Inicia el movimiento tirando los codos hacia la cadera, no hacia el pecho. Controla la bajada para estirar la espalda.</li>
+                    <li><strong>Jalón al Pecho:</strong> Baja los hombros antes de flexionar los brazos. Lleva la barra a la parte alta del pecho con una ligera inclinación hacia atrás.</li>
+                </ul>
+                <div class="muscle-focus">Impacto: Dorsal ancho, romboides, trapecio inferior, bíceps.</div>
+            </div>
+
+            <div class="guide-item">
+                <h3>3. Eje Inferior Anterior (Cuádriceps)</h3>
+                <ul class="guide-steps">
+                    <li><strong>Prensa 45°:</strong> Pies a la anchura de los hombros. Baja profundo pero detente antes de que tu zona lumbar se despegue del asiento. Empuja con todo el pie, priorizando el talón.</li>
+                </ul>
+                <div class="muscle-focus">Impacto: Cuádriceps, glúteo mayor.</div>
+            </div>
+
+            <div class="guide-item">
+                <h3>4. Eje Inferior Posterior (Isquiotibiales y Gemelos)</h3>
+                <ul class="guide-steps">
+                    <li><strong>Curl Femoral:</strong> Si es sentado, ajusta el rodillo firme sobre el tobillo y alinea tu rodilla con el eje de la máquina. Si es acostado, no despegues la cadera del banco. Aguanta 2-3 segundos la bajada del peso.</li>
+                    <li><strong>Gemelos (Elevación de Talones):</strong> Haz el movimiento completo. La clave es una pausa de 1 segundo en la posición de máximo estiramiento abajo para evitar el rebote del tendón de Aquiles.</li>
+                </ul>
+                <div class="muscle-focus">Impacto: Isquiotibiales, gastrocnemio, sóleo.</div>
+            </div>
+            
+            <div class="guide-item">
+                <h3>5. Aislamiento de Brazos</h3>
+                <ul class="guide-steps">
+                    <li><strong>Curl de Bíceps (Supinado):</strong> Palmas siempre hacia arriba. Pega los codos a las costillas y no los muevas. Solo gira el antebrazo.</li>
+                    <li><strong>Extensión de Tríceps:</strong> Usa una soga o barra recta en la polea. Empuja hacia el suelo y separa ligeramente las manos al final del recorrido para máxima contracción.</li>
+                </ul>
+                <div class="muscle-focus">Impacto: Bíceps braquial, tríceps braquial.</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="timerBar" class="timer-bar">
+        <div class="timer-info">
+            <div class="timer-display" id="timerDisplay">0:00</div>
+            <div class="timer-label" id="timerLabel">Tocá un descanso para arrancar</div>
+        </div>
+        <button type="button" class="timer-cancel" id="cancelBtn">✕</button>
+    </div>
+
+    <script>
+        (function () {
+            var timerInterval = null;
+            var remainingSeconds = 0;
+
+            var bar = document.getElementById('timerBar');
+            var display = document.getElementById('timerDisplay');
+            var label = document.getElementById('timerLabel');
+
+            function updateDisplay() {
+                var s = Math.max(remainingSeconds, 0);
+                var m = Math.floor(s / 60);
+                var sec = s % 60;
+                display.textContent = m + ':' + (sec < 10 ? '0' : '') + sec;
+            }
+
+            function startTimer(seconds) {
+                clearInterval(timerInterval);
+                remainingSeconds = seconds;
+                bar.classList.remove('done');
+                bar.classList.add('active');
+                label.textContent = 'Descansando...';
+                updateDisplay();
+                timerInterval = setInterval(function () {
+                    remainingSeconds--;
+                    updateDisplay();
+                    if (remainingSeconds <= 0) {
+                        clearInterval(timerInterval);
+                        bar.classList.remove('active');
+                        bar.classList.add('done');
+                        label.textContent = '¡Listo, dale!';
+                        playBeep();
+                        if (navigator.vibrate) {
+                            navigator.vibrate([300, 150, 300, 150, 300]);
+                        }
+                    }
+                }, 1000);
+            }
+
+            function cancelTimer() {
+                clearInterval(timerInterval);
+                remainingSeconds = 0;
+                bar.classList.remove('active', 'done');
+                display.textContent = '0:00';
+                label.textContent = 'Tocá un descanso para arrancar';
+            }
+
+            function playBeep() {
+                try {
+                    var ctx = new (window.AudioContext || window.webkitAudioContext)();
+                    [0, 0.35, 0.7].forEach(function (offset) {
+                        var osc = ctx.createOscillator();
+                        var gain = ctx.createGain();
+                        osc.connect(gain);
+                        gain.connect(ctx.destination);
+                        osc.frequency.value = 880;
+                        gain.gain.setValueAtTime(0.35, ctx.currentTime + offset);
+                        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + offset + 0.25);
+                        osc.start(ctx.currentTime + offset);
+                        osc.stop(ctx.currentTime + offset + 0.25);
+                    });
+                } catch (e) {}
+            }
+
+            // Delegación de eventos: un solo listener para todos los botones de descanso,
+            // en vez de onclick inline (más robusto ante distintos navegadores/visores).
+            document.addEventListener('click', function (evt) {
+                var btn = evt.target.closest('.rest-btn');
+                if (btn) {
+                    startTimer(parseInt(btn.getAttribute('data-seconds'), 10));
+                    return;
+                }
+                if (evt.target.closest('#cancelBtn')) {
+                    cancelTimer();
+                }
+            });
+        })();
+    </script>
+
+</body>
+</html>
