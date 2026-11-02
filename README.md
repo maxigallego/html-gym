@@ -6,7 +6,7 @@ Single-page web app with a two-day gym routine (**Rutina A / Rutina B**), per-ex
 
 ## Features
 
-- Two routines with sets, repetitions and notes per exercise.
+- Two routines listing exercise, sets, repetitions and rest time.
 - One-tap rest timers (60 s and 90 s) with a cancel button.
 - Biomechanics guide for exercise execution.
 - Mobile-first layout, designed to be added to the phone's home screen.
